@@ -1,0 +1,101 @@
+[gd_scene load_steps=12 format=3 uid="uid://dsw353uy4fkrq"]
+
+[ext_resource type="Script" uid="uid://c2u3lmce0a51" path="res://levels/level_1.gd" id="1_btoec"]
+[ext_resource type="Material" uid="uid://dqq3f40lwh6c" path="res://levels/material_ground.tres" id="1_kx6l7"]
+[ext_resource type="PackedScene" uid="uid://b1ot6gn6tms6h" path="res://game/player/player.tscn" id="1_vn7o3"]
+[ext_resource type="PackedScene" uid="uid://b1gf26i2xs4nv" path="res://ui/hud.tscn" id="2_l53as"]
+[ext_resource type="ArrayMesh" uid="uid://dxlpla7ad720s" path="res://assets/models/Models/OBJ format/wall-corner.obj" id="4_btoec"]
+[ext_resource type="Material" uid="uid://cbgvck7ekffye" path="res://levels/material_wall.tres" id="5_n46q3"]
+[ext_resource type="PackedScene" uid="uid://d4b1lr43s2eox" path="res://game/pill.tscn" id="7_gwceb"]
+[ext_resource type="PackedScene" uid="uid://h0ct6q2xsyhy" path="res://game/mob/mob.tscn" id="7_l53as"]
+
+[sub_resource type="Environment" id="Environment_vn7o3"]
+ambient_light_source = 3
+ambient_light_color = Color(0.9428228, 0.94282264, 0.94282264, 1)
+
+[sub_resource type="NavigationMesh" id="NavigationMesh_3sk1a"]
+vertices = PackedVector3Array(-4.197998, 0.5, -0.75, 0.052001953, 0.5, -0.75, 0.30200195, 0.5, -1.5, 1.802002, 0.5, -7.5, -4.197998, 0.5, -7.5, 1.802002, 0.5, -1.5, 3.302002, 0.5, -1.25, 3.302002, 0.5, 1.25, 7.052002, 0.5, 6.5, 9.052002, 0.5, 5.5, 12.302002, 0.5, 6, 13.552002, 0.5, 6.75, 14.552002, 0.5, 10, 26.802002, 0.5, 10, 26.802002, 0.5, -7.5, 1.802002, 0.5, 1.75, 1.552002, 0.5, 0, 0.30200195, 0.5, 0, 3.052002, 0.5, 1.75, 6.302002, 0.5, 7, 5.802002, 0.5, 8.5, -4.197998, 0.5, 8.5, 10.552002, 1.5, 11.5, 7.052002, 1.5, 11.5, 7.302002, 1.5, 12.5, 9.552002, 1.5, 13.5, 12.302002, 1.5, 12.75, 10.802002, 1.5, 8.75, 12.802002, 1.5, 7.75, 10.552002, 1.5, 6.5, 7.302002, 1.5, 7.5, 7.052002, 1.5, 8.25, 13.552002, 1.5, 10.25, 6.052002, 0.5, 10.5, 9.802002, 0.5, 10.5, 9.802002, 0.5, 9.75, 6.052002, 0.5, 9.75, -4.197998, 0.5, 11.5, 5.802002, 0.5, 11.5, 13.302002, 0.5, 13.5, 10.052002, 0.5, 14.5, 10.052002, 0.5, 23.5, 26.802002, 0.5, 23.5, 6.802002, 0.5, 13.5, -4.197998, 0.5, 23.5)
+polygons = [PackedInt32Array(1, 0, 2), PackedInt32Array(2, 0, 4), PackedInt32Array(2, 4, 3), PackedInt32Array(3, 5, 2), PackedInt32Array(6, 5, 3), PackedInt32Array(8, 7, 9), PackedInt32Array(7, 6, 9), PackedInt32Array(9, 6, 10), PackedInt32Array(13, 12, 11), PackedInt32Array(10, 6, 11), PackedInt32Array(11, 6, 3), PackedInt32Array(11, 3, 13), PackedInt32Array(13, 3, 14), PackedInt32Array(17, 16, 15), PackedInt32Array(0, 1, 17), PackedInt32Array(18, 7, 19), PackedInt32Array(19, 7, 8), PackedInt32Array(19, 20, 15), PackedInt32Array(15, 20, 21), PackedInt32Array(15, 21, 0), PackedInt32Array(0, 17, 15), PackedInt32Array(15, 18, 19), PackedInt32Array(24, 23, 25), PackedInt32Array(25, 23, 22), PackedInt32Array(25, 22, 26), PackedInt32Array(28, 27, 29), PackedInt32Array(29, 27, 30), PackedInt32Array(30, 27, 31), PackedInt32Array(28, 32, 27), PackedInt32Array(27, 32, 22), PackedInt32Array(22, 32, 26), PackedInt32Array(36, 35, 33), PackedInt32Array(33, 35, 34), PackedInt32Array(33, 38, 36), PackedInt32Array(36, 38, 20), PackedInt32Array(20, 38, 37), PackedInt32Array(20, 37, 21), PackedInt32Array(41, 40, 39), PackedInt32Array(39, 12, 41), PackedInt32Array(41, 12, 13), PackedInt32Array(41, 13, 42), PackedInt32Array(43, 40, 41), PackedInt32Array(38, 43, 37), PackedInt32Array(37, 43, 44), PackedInt32Array(44, 43, 41)]
+
+[sub_resource type="WorldBoundaryShape3D" id="WorldBoundaryShape3D_gwceb"]
+margin = 0.5
+
+[node name="Level1" type="Node3D"]
+script = ExtResource("1_btoec")
+
+[node name="Hud" parent="." instance=ExtResource("2_l53as")]
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="."]
+environment = SubResource("Environment_vn7o3")
+
+[node name="player" parent="." instance=ExtResource("1_vn7o3")]
+
+[node name="NavigationRegion3D" type="NavigationRegion3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.0227108, 0.006883621, -0.0045785904)
+navigation_mesh = SubResource("NavigationMesh_3sk1a")
+
+[node name="ground" type="CSGBox3D" parent="NavigationRegion3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 3.302002, -1, 0)
+use_collision = true
+size = Vector3(16, 2, 16)
+material = ExtResource("1_kx6l7")
+
+[node name="ground2" type="CSGBox3D" parent="NavigationRegion3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 3.302002, -1, 16)
+use_collision = true
+size = Vector3(16, 2, 16)
+material = ExtResource("1_kx6l7")
+
+[node name="ground3" type="CSGBox3D" parent="NavigationRegion3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 19.302002, -1, 16)
+use_collision = true
+size = Vector3(16, 2, 16)
+material = ExtResource("1_kx6l7")
+
+[node name="ground4" type="CSGBox3D" parent="NavigationRegion3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 19.302002, -1, 0)
+use_collision = true
+size = Vector3(16, 2, 16)
+material = ExtResource("1_kx6l7")
+
+[node name="CSGMesh3D" type="CSGMesh3D" parent="NavigationRegion3D"]
+transform = Transform3D(2, 0, 0, 0, 2, 0, 0, 0, 2, 1.564991, 0, 0)
+use_collision = true
+mesh = ExtResource("4_btoec")
+material = ExtResource("5_n46q3")
+
+[node name="CSGCylinder3D" type="CSGCylinder3D" parent="NavigationRegion3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 10, 0, 10)
+operation = 2
+use_collision = true
+radius = 4.0
+
+[node name="CSGBox3D" type="CSGBox3D" parent="NavigationRegion3D/CSGCylinder3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2, 1, 0)
+operation = 2
+use_collision = true
+size = Vector3(5, 4, 3)
+
+[node name="Killplane" type="Area3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -4.4199514, 0)
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Killplane"]
+shape = SubResource("WorldBoundaryShape3D_gwceb")
+debug_color = Color(0, 0.6, 0.69803923, 0.7058824)
+
+[node name="items" type="Node3D" parent="."]
+
+[node name="Pill" parent="items" instance=ExtResource("7_gwceb")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -3.7963455, 0, 0)
+
+[node name="mobs" type="Node3D" parent="."]
+
+[node name="Mob" parent="mobs" instance=ExtResource("7_l53as")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 9.275751, 2.2358801, 0)
+
+[node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
+transform = Transform3D(0.8660254, 0.25000003, -0.4330127, 0.5, -0.43301275, 0.75, 0, -0.8660254, -0.50000006, 0, 11, 0)
+light_color = Color(0.5165994, 0.50810057, 0.34874752, 1)
+shadow_enabled = true
+
+[connection signal="body_entered" from="Killplane" to="." method="_on_area_3d_body_entered"]

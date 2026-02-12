@@ -1,0 +1,9 @@
+[gd_scene load_steps=2 format=3 uid="uid://vpk7ntl2bo5m"]
+
+[ext_resource type="Material" uid="uid://dqq3f40lwh6c" path="res://levels/material_ground.tres" id="1_vkjyb"]
+
+[node name="MeshLibrary" type="Node3D"]
+
+[node name="CSGBox3D" type="CSGBox3D" parent="."]
+size = Vector3(16, 2, 16)
+material = ExtResource("1_vkjyb")

@@ -1,0 +1,23 @@
+[gd_scene load_steps=4 format=3 uid="uid://d4b1lr43s2eox"]
+
+[ext_resource type="Script" uid="uid://wg1ajlj0kpql" path="res://game/pill.gd" id="1_xqcnc"]
+[ext_resource type="ArrayMesh" uid="uid://eogp0nlyasej" path="res://assets/models/Models/OBJ format/coin.obj" id="2_6a0a6"]
+
+[sub_resource type="SphereShape3D" id="SphereShape3D_070qm"]
+radius = 0.3
+
+[node name="Pill" type="Node3D"]
+script = ExtResource("1_xqcnc")
+
+[node name="StaticBody3D" type="Area3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.4580462, 0)
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="StaticBody3D"]
+shape = SubResource("SphereShape3D_070qm")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="StaticBody3D"]
+transform = Transform3D(2, 0, 0, 0, 2, 0, 0, 0, 2, 0, 0, 0)
+mesh = ExtResource("2_6a0a6")
+skeleton = NodePath("../..")
+
+[connection signal="body_entered" from="StaticBody3D" to="." method="_on_body_entered"]

@@ -1,0 +1,25 @@
+[remap]
+
+importer="wavefront_obj"
+importer_version=1
+type="Mesh"
+uid="uid://d2lucpl6beu2a"
+path="res://.godot/imported/wall-corner-rounded.obj-acc701138fb4bc70d0beab956557164d.mesh"
+
+[deps]
+
+files=["res://.godot/imported/wall-corner-rounded.obj-acc701138fb4bc70d0beab956557164d.mesh"]
+
+source_file="res://assets/models/Models/OBJ format/wall-corner-rounded.obj"
+dest_files=["res://.godot/imported/wall-corner-rounded.obj-acc701138fb4bc70d0beab956557164d.mesh", "res://.godot/imported/wall-corner-rounded.obj-acc701138fb4bc70d0beab956557164d.mesh"]
+
+[params]
+
+generate_tangents=true
+generate_lods=true
+generate_shadow_mesh=true
+generate_lightmap_uv2=false
+generate_lightmap_uv2_texel_size=0.2
+scale_mesh=Vector3(1, 1, 1)
+offset_mesh=Vector3(0, 0, 0)
+force_disable_mesh_compression=false
