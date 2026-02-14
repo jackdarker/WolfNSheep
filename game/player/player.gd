@@ -44,6 +44,7 @@ var _camera_input_direction := Vector2.ZERO
 @onready var _jump_sound: AudioStreamPlayer3D = %JumpSound
 @onready var _dust_particles: GPUParticles3D = %DustParticles
 
+var dashing:float=0
 
 func _ready() -> void:
 	Global.kill_plane_touched.connect(func on_kill_plane_touched() -> void:
@@ -78,6 +79,7 @@ func _unhandled_input(event: InputEvent) -> void:
 func _physics_process(delta: float) -> void:
 	if(fixed_camera):
 		_camera_pivot.rotation_degrees=fixed_camera_pos
+		$CameraPivot/SpringArm3D.spring_length=30
 	else:
 		_camera_pivot.rotation.x += _camera_input_direction.y * delta
 		_camera_pivot.rotation.x = clamp(_camera_pivot.rotation.x, tilt_lower_limit, tilt_upper_limit)
@@ -102,19 +104,32 @@ func _physics_process(delta: float) -> void:
 	var target_angle := Vector3.BACK.signed_angle_to(_last_input_direction, Vector3.UP)
 	_skin.global_rotation.y = lerp_angle(_skin.rotation.y, target_angle, rotation_speed * delta)
 
+	var is_just_dashing := Input.is_action_just_pressed("jump") and is_on_floor()
 	# We separate out the y velocity to only interpolate the velocity in the
 	# ground plane, and not affect the gravity.
 	var y_velocity := velocity.y
 	velocity.y = 0.0
-	velocity = velocity.move_toward(move_direction * move_speed, acceleration * delta)
+	if(is_just_dashing):
+		dashing=0.20
+	if(dashing>0):
+		dashing-=delta
+		if(dashing>0):
+			velocity = velocity.move_toward(_last_input_direction * move_speed*5, 100.0 )
+		else:
+			velocity = _last_input_direction * move_speed
+	else:
+		velocity = velocity.move_toward(move_direction * move_speed, acceleration * delta )
 	if is_equal_approx(move_direction.length_squared(), 0.0) and velocity.length_squared() < stopping_speed:
 		velocity = Vector3.ZERO
 	velocity.y = y_velocity + _gravity * delta
 
 	# Character animations and visual effects.
 	var ground_speed := Vector2(velocity.x, velocity.z).length()
-	var is_just_jumping := Input.is_action_just_pressed("jump") and is_on_floor()
-	if is_just_jumping:
+	var is_just_jumping := false #Input.is_action_just_pressed("jump") and is_on_floor()
+	if is_just_dashing:
+		_skin.dash_fwd()
+		_jump_sound.play() 
+	elif is_just_jumping:
 		velocity.y += jump_impulse
 		_skin.jump()
 		_jump_sound.play()

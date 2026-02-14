@@ -1,0 +1,23 @@
+[gd_scene load_steps=4 format=3 uid="uid://r572qpyuh72f"]
+
+[ext_resource type="PackedScene" uid="uid://084j5ny4547v" path="res://levels/level_base.tscn" id="1_mi4ay"]
+[ext_resource type="MeshLibrary" uid="uid://dknvvdhi7l0et" path="res://prefab/mesh_library.tres" id="2_pqqg8"]
+
+[sub_resource type="NavigationMesh" id="NavigationMesh_pqqg8"]
+vertices = PackedVector3Array(-6.5, 2, -13.25, -5.25, 2, -13.5, -5.5, 2, -16.25, -6.5, 2, -16.5, -20.5, 2, -16.25, -20.5, 2, -13.5, -19.25, 2, -13.25, -19.25, 2, -16.75, -6.5, 2, -21.25, -19.25, 2, -21.25, -19.25, 2, -8.5, -6.5, 2, -8.5, -4.25, 2, -13.25, -4.25, 2, -16.75, 9.5, 2, -6.5, 9.5, 2, -21.25, -4.25, 2, -21.25, -4.5, 2, -6.5, -6.5, 2, -6.25, -6.25, 2, 7.5, -4.5, 2, 7.5, -4.25, 2, 8.5, 10.5, 2, 8.5, 10.5, 2, -6.25, -19.25, 2, -6.25, -19.25, 2, 7.5)
+polygons = [PackedInt32Array(2, 1, 3), PackedInt32Array(3, 1, 0), PackedInt32Array(5, 4, 6), PackedInt32Array(6, 4, 7), PackedInt32Array(6, 7, 3), PackedInt32Array(6, 3, 0), PackedInt32Array(9, 8, 7), PackedInt32Array(7, 8, 3), PackedInt32Array(0, 11, 6), PackedInt32Array(6, 11, 10), PackedInt32Array(12, 1, 2), PackedInt32Array(2, 13, 12), PackedInt32Array(12, 13, 15), PackedInt32Array(12, 15, 14), PackedInt32Array(13, 16, 15), PackedInt32Array(14, 17, 12), PackedInt32Array(19, 18, 20), PackedInt32Array(20, 18, 17), PackedInt32Array(20, 17, 21), PackedInt32Array(21, 17, 14), PackedInt32Array(21, 14, 23), PackedInt32Array(21, 23, 22), PackedInt32Array(24, 18, 25), PackedInt32Array(25, 18, 19)]
+
+[node name="Level" instance=ExtResource("1_mi4ay")]
+
+[node name="player" parent="." index="2"]
+fixed_camera_pos = Vector3(45, 0, 0)
+
+[node name="NavigationRegion3D" type="NavigationRegion3D" parent="." index="7"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -1.5, 0)
+navigation_mesh = SubResource("NavigationMesh_pqqg8")
+
+[node name="GridMap" type="GridMap" parent="NavigationRegion3D" index="0"]
+mesh_library = ExtResource("2_pqqg8")
+data = {
+"cells": PackedInt32Array(1, 0, 2, 1, 65528, 0, 65529, 0, 655360, 65529, 65528, 10, 9, 0, 2, 17, 0, 2, 1, 8, 655360, 9, 8, 1441792, 17, 8, 1441792, 9, 65528, 0, 17, 65528, 0, 25, 0, 11)
+}

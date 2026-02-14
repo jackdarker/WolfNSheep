@@ -1,0 +1,53 @@
+[gd_scene load_steps=8 format=3 uid="uid://084j5ny4547v"]
+
+[ext_resource type="Script" uid="uid://bbkdo20wosi87" path="res://levels/level_base.gd" id="1_ep22m"]
+[ext_resource type="PackedScene" uid="uid://b1gf26i2xs4nv" path="res://ui/hud.tscn" id="2_p3adb"]
+[ext_resource type="PackedScene" uid="uid://b1ot6gn6tms6h" path="res://game/player/player.tscn" id="3_5f4n4"]
+[ext_resource type="PackedScene" uid="uid://d4b1lr43s2eox" path="res://game/pill.tscn" id="7_gei2l"]
+[ext_resource type="PackedScene" uid="uid://h0ct6q2xsyhy" path="res://game/mob/mob.tscn" id="8_vy5pf"]
+
+[sub_resource type="Environment" id="Environment_vn7o3"]
+ambient_light_source = 3
+ambient_light_color = Color(0.9428228, 0.94282264, 0.94282264, 1)
+
+[sub_resource type="WorldBoundaryShape3D" id="WorldBoundaryShape3D_gwceb"]
+margin = 0.5
+
+[node name="Level" type="Node3D"]
+script = ExtResource("1_ep22m")
+
+[node name="Hud" parent="." instance=ExtResource("2_p3adb")]
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="."]
+environment = SubResource("Environment_vn7o3")
+
+[node name="player" parent="." instance=ExtResource("3_5f4n4")]
+unique_name_in_owner = true
+fixed_camera = true
+fixed_camera_pos = Vector3(25, 0, 0)
+
+[node name="Killplane" type="Area3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -4.4199514, 0)
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Killplane"]
+shape = SubResource("WorldBoundaryShape3D_gwceb")
+debug_color = Color(0, 0.6, 0.69803923, 0.7058824)
+
+[node name="items" type="Node3D" parent="."]
+unique_name_in_owner = true
+
+[node name="Pill" parent="items" instance=ExtResource("7_gei2l")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -3.7963455, 0, 0)
+
+[node name="mobs" type="Node3D" parent="."]
+unique_name_in_owner = true
+
+[node name="Mob" parent="mobs" instance=ExtResource("8_vy5pf")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 9.275751, 2.2358801, 0)
+
+[node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
+transform = Transform3D(0.8660254, 0.25000003, -0.4330127, 0.5, -0.43301275, 0.75, 0, -0.8660254, -0.50000006, 0, 11, 0)
+light_color = Color(0.5165994, 0.50810057, 0.34874752, 1)
+shadow_enabled = true
+
+[connection signal="body_entered" from="Killplane" to="." method="_on_area_3d_body_entered"]

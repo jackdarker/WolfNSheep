@@ -44,6 +44,7 @@ radial_segments = 8
 rings = 8
 
 [sub_resource type="SeparationRayShape3D" id="SeparationRayShape3D_3w01g"]
+slide_on_slope = true
 
 [node name="Player" type="CharacterBody3D"]
 axis_lock_angular_x = true
@@ -91,6 +92,6 @@ spring_length = 10.0
 
 [node name="Camera3D" type="Camera3D" parent="CameraPivot/SpringArm3D"]
 unique_name_in_owner = true
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 10)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -2.3841858e-07, 10)
 current = true
 fov = 50.0
