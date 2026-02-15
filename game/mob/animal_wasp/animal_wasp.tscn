@@ -1,0 +1,9 @@
+[gd_scene load_steps=3 format=3 uid="uid://dbhlifh7xgbp5"]
+
+[ext_resource type="PackedScene" uid="uid://h0ct6q2xsyhy" path="res://game/mob/mob.tscn" id="1_sq7mo"]
+[ext_resource type="PackedScene" uid="uid://cm7f116kedlp6" path="res://game/mob/animal_wasp/skin_animal_wasp.tscn" id="2_53ety"]
+
+[node name="Mob" instance=ExtResource("1_sq7mo")]
+
+[node name="Skin" parent="." index="0" instance=ExtResource("2_53ety")]
+

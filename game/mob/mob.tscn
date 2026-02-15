@@ -1,16 +1,18 @@
-[gd_scene load_steps=4 format=3 uid="uid://h0ct6q2xsyhy"]
+[gd_scene load_steps=5 format=3 uid="uid://h0ct6q2xsyhy"]
 
 [ext_resource type="Script" uid="uid://1vfr548k6pgq" path="res://game/mob/mob.gd" id="1_5st67"]
-[ext_resource type="PackedScene" uid="uid://bmk4whamwoc5o" path="res://game/mob/animal_dog/animal_dog_2.tscn" id="2_5st67"]
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_sox52"]
 radius = 0.46069336
 height = 0.9213867
 
+[sub_resource type="ConvexPolygonShape3D" id="ConvexPolygonShape3D_v24qj"]
+points = PackedVector3Array(0, 0, 0, 0, 0, 0, 0, 0, 0)
+
+[sub_resource type="ConvexPolygonShape3D" id="ConvexPolygonShape3D_5st67"]
+
 [node name="Mob" type="CharacterBody3D"]
 script = ExtResource("1_5st67")
-
-[node name="animal-dog2" parent="." instance=ExtResource("2_5st67")]
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.46089935, 0)
@@ -19,3 +21,19 @@ shape = SubResource("CapsuleShape3D_sox52")
 [node name="nav_agent" type="NavigationAgent3D" parent="."]
 unique_name_in_owner = true
 debug_enabled = true
+
+[node name="view_range" type="ShapeCast3D" parent="."]
+unique_name_in_owner = true
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.5, 0)
+shape = SubResource("ConvexPolygonShape3D_v24qj")
+target_position = Vector3(0, 0, -6)
+debug_shape_custom_color = Color(0.8931998, 0.3499487, 0.6154183, 1)
+
+[node name="attack_range" type="ShapeCast3D" parent="."]
+unique_name_in_owner = true
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.5, 0)
+shape = SubResource("ConvexPolygonShape3D_5st67")
+target_position = Vector3(0, 0, -6)
+
+[node name="state_timer" type="Timer" parent="."]
+unique_name_in_owner = true

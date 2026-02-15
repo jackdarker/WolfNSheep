@@ -1,0 +1,6 @@
+[gd_scene load_steps=2 format=3 uid="uid://cm7f116kedlp6"]
+
+[ext_resource type="PackedScene" uid="uid://bybyjh2wemilp" path="res://assets/models/Wasp.fbx" id="1_sq7mo"]
+
+[node name="Skin" instance=ExtResource("1_sq7mo")]
+transform = Transform3D(1.3113416e-07, 0, 1, 0, 1, 0, -1, 0, 1.3113416e-07, 0, 0, 0)

@@ -2,4 +2,5 @@
 
 [ext_resource type="PackedScene" uid="uid://b84418pm3i6my" path="res://assets/models/Models/GLB format/animal-dog.glb" id="1_cqoay"]
 
-[node name="animal-dog2" instance=ExtResource("1_cqoay")]
+[node name="skin" instance=ExtResource("1_cqoay")]
+transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, 0, 0, 0)

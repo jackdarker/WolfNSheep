@@ -46,7 +46,7 @@ rings = 8
 [sub_resource type="SeparationRayShape3D" id="SeparationRayShape3D_3w01g"]
 slide_on_slope = true
 
-[node name="Player" type="CharacterBody3D"]
+[node name="Player" type="CharacterBody3D" groups=["Player"]]
 axis_lock_angular_x = true
 axis_lock_angular_y = true
 axis_lock_angular_z = true
