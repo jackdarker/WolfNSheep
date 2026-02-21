@@ -1,0 +1,13 @@
+[gd_scene load_steps=4 format=3 uid="uid://b2kqfckr2txu6"]
+
+[ext_resource type="PackedScene" uid="uid://2euqjookwk2" path="res://assets/models/Models/GLB format/flag.glb" id="1_bhcgm"]
+[ext_resource type="Script" uid="uid://dmmkiemg3uisn" path="res://game/patrol_point.gd" id="2_ba7b7"]
+[ext_resource type="Material" uid="uid://dd8eyv3u7ywxy" path="res://assets/models/Models/dungeon_material_b.tres" id="3_n01c4"]
+
+[node name="PatrolPoint" instance=ExtResource("1_bhcgm")]
+script = ExtResource("2_ba7b7")
+
+[node name="flag" parent="." index="0"]
+transform = Transform3D(1.4142135, 0, 1.4142135, 0, 2, 0, -1.4142135, 0, 1.4142135, 0, 0, 0)
+layers = 16384
+surface_material_override/0 = ExtResource("3_n01c4")
