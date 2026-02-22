@@ -1,0 +1,8 @@
+[gd_scene load_steps=2 format=3 uid="uid://dpt3p2kksvc00"]
+
+[ext_resource type="PackedScene" uid="uid://6b2c1w0f4n4b" path="res://assets/Low Poly -RG Nature Mega Pack/Meshesh/Mushrooms/Mushroom 1_1.fbx" id="1_iq40s"]
+
+[node name="Mushroom 1_1" instance=ExtResource("1_iq40s")]
+
+[node name="Mushroom 1_1" parent="." index="0"]
+transform = Transform3D(2, 0, 0, 0, 2, 3.8941437e-07, 0, -3.8941437e-07, 2, 0, 0, 0)

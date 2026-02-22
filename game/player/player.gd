@@ -31,6 +31,10 @@ var _gravity := -30.0
 var _was_on_floor_last_frame := true
 var _camera_input_direction := Vector2.ZERO
 
+var health:float=100
+var stamina:float=100
+var stamina_regen:float=5 
+const dash_cost:float=20
 ## The last movement or aim direction input by the player. We use this to orient
 ## the character model.
 @onready var _last_input_direction := global_basis.z
@@ -58,6 +62,7 @@ func _ready() -> void:
 		_skin.idle()
 		_dust_particles.emitting = false
 	)
+	%tmr_regen.timeout.connect(regen_stamina)
 
 
 func _input(event: InputEvent) -> void:
@@ -75,7 +80,24 @@ func _unhandled_input(event: InputEvent) -> void:
 		_camera_input_direction.x = -event.relative.x * mouse_sensitivity
 		_camera_input_direction.y = -event.relative.y * mouse_sensitivity
 
+func modify_stamina(change):
+	var new_stamina = clampf(stamina+change,0,100)
+	if(new_stamina!=stamina):
+		stamina=new_stamina
+		Global.stamina_changed.emit(stamina)
+	if(change<0):
+		%tmr_regen.stop()
+		%tmr_regen.start(1.5)
+	elif(new_stamina>=100):
+		%tmr_regen.stop()
+		
+func regen_stamina():
+	modify_stamina(stamina_regen)
+	%tmr_regen.wait_time=0.5
 
+func _process(delta: float) -> void:
+	pass
+		
 func _physics_process(delta: float) -> void:
 	if(fixed_camera):
 		_camera_pivot.rotation_degrees=fixed_camera_pos
@@ -104,13 +126,14 @@ func _physics_process(delta: float) -> void:
 	var target_angle := Vector3.BACK.signed_angle_to(_last_input_direction, Vector3.UP)
 	_skin.global_rotation.y = lerp_angle(_skin.rotation.y, target_angle, rotation_speed * delta)
 
-	var is_just_dashing := Input.is_action_just_pressed("jump") and is_on_floor()
+	var is_just_dashing := Input.is_action_just_pressed("jump") and is_on_floor() and stamina>=dash_cost
 	# We separate out the y velocity to only interpolate the velocity in the
 	# ground plane, and not affect the gravity.
 	var y_velocity := velocity.y
 	velocity.y = 0.0
 	if(is_just_dashing):
-		dashing=0.20
+		modify_stamina(-1*dash_cost)
+		dashing=0.20	#dashing window
 	if(dashing>0):
 		dashing-=delta
 		if(dashing>0):

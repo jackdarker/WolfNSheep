@@ -8,6 +8,9 @@ Unlock upgrades.
 
 - 3D Third-person or 2D Top down ?
 - menu to select next level
+- patrolling/searching/following enemys
+- hurting player & game over
+- wolf-boss
 - a couple of levels
 - a shop to buy upgrades
 - items and weapons

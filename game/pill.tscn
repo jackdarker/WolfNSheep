@@ -1,7 +1,8 @@
-[gd_scene load_steps=4 format=3 uid="uid://d4b1lr43s2eox"]
+[gd_scene load_steps=5 format=3 uid="uid://d4b1lr43s2eox"]
 
 [ext_resource type="Script" uid="uid://wg1ajlj0kpql" path="res://game/pill.gd" id="1_xqcnc"]
 [ext_resource type="ArrayMesh" uid="uid://eogp0nlyasej" path="res://assets/models/Models/OBJ format/coin.obj" id="2_6a0a6"]
+[ext_resource type="Script" uid="uid://8tuq62oxlpjw" path="res://prefab/item_rotator.gd" id="2_070qm"]
 
 [sub_resource type="SphereShape3D" id="SphereShape3D_070qm"]
 radius = 0.3
@@ -10,7 +11,8 @@ radius = 0.3
 script = ExtResource("1_xqcnc")
 
 [node name="StaticBody3D" type="Area3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.4580462, 0)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.6, 0)
+script = ExtResource("2_070qm")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="StaticBody3D"]
 shape = SubResource("SphereShape3D_070qm")

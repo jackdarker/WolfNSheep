@@ -1,10 +1,30 @@
-[gd_scene format=3 uid="uid://b1gf26i2xs4nv"]
+[gd_scene load_steps=2 format=3 uid="uid://b1gf26i2xs4nv"]
+
+[ext_resource type="Script" uid="uid://ll1lamc5mf3n" path="res://ui/hud.gd" id="1_rbyyf"]
 
 [node name="Hud" type="Node"]
+script = ExtResource("1_rbyyf")
 
 [node name="CanvasLayer" type="CanvasLayer" parent="."]
 
-[node name="Label" type="Label" parent="CanvasLayer"]
-offset_right = 40.0
-offset_bottom = 23.0
+[node name="HBoxContainer" type="HBoxContainer" parent="CanvasLayer"]
+anchors_preset = 10
+anchor_right = 1.0
+offset_bottom = 27.0
+grow_horizontal = 2
+size_flags_horizontal = 3
+
+[node name="bar_health" type="ProgressBar" parent="CanvasLayer/HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="bar_stamina" type="ProgressBar" parent="CanvasLayer/HBoxContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="lbl_score" type="Label" parent="CanvasLayer/HBoxContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_horizontal = 3
 text = "Score"

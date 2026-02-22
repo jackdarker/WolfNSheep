@@ -1,9 +1,11 @@
-[gd_scene load_steps=6 format=3 uid="uid://r572qpyuh72f"]
+[gd_scene load_steps=8 format=3 uid="uid://r572qpyuh72f"]
 
 [ext_resource type="PackedScene" uid="uid://084j5ny4547v" path="res://levels/level_base.tscn" id="1_mi4ay"]
+[ext_resource type="PackedScene" uid="uid://d4b1lr43s2eox" path="res://game/pill.tscn" id="2_ilhis"]
 [ext_resource type="MeshLibrary" uid="uid://dknvvdhi7l0et" path="res://prefab/mesh_library.tres" id="2_pqqg8"]
 [ext_resource type="PackedScene" uid="uid://dbhlifh7xgbp5" path="res://game/mob/animal_wasp/animal_wasp.tscn" id="2_v5uil"]
 [ext_resource type="PackedScene" uid="uid://b2kqfckr2txu6" path="res://game/patrol_point.tscn" id="4_v5uil"]
+[ext_resource type="PackedScene" uid="uid://dpt3p2kksvc00" path="res://prefab/props/mushroom_1_1.tscn" id="5_5722l"]
 
 [sub_resource type="NavigationMesh" id="NavigationMesh_pqqg8"]
 vertices = PackedVector3Array(-20, 2, -15.5, -20, 2, -14, -18.5, 2, -13.5, -7, 2, -13.5, -7, 2, -16, -18.5, 2, -16.5, -5, 2, -14, -5, 2, -15.5, -18.5, 2, -9, -7, 2, -9, -7, 2, -20.5, -18.5, 2, -20.5, -3.5, 2, -13.5, 9, 2, -9.5, 9, 2, -20.5, -3.5, 2, -16.5, -3.5, 2, -20.5, -3.5, 2, -10, 12.5, 2, -8, 13.5, 2, -8, 14, 2, -9.5, 12.5, 2, -20.5, 16, 2, -9.5, 17, 2, -7.5, 25, 2, -7.5, 25, 2, -20.5, 28.5, 2, -10, 41, 2, -9.5, 41, 2, -20.5, 28.5, 2, -20.5, 7, 2, 23, 7, 2, 18, 4.5, 2, 17, -2.5, 2, 23, -4.5, 2, -5.5, -8, 2, -5.5, -7.5, 2, 7, -4, 2, 7, 4.5, 2, 15, -2.5, 2, 8.5, 9, 2, -6, -3.5, 2, -6.5, 7.5, 2, 15, 10, 2, -5.5, 42, 2, 2.5, 43.5, 2, 2, 43.5, 2, 0.5, 42, 2, 0, 28.5, 2, -6.5, 26.5, 2, -5.5, 28.5, 2, 8.5, 41, 2, 8.5, 28.5, 2, 19, 32.5, 2, 19, 33, 2, 18, 42, 2, 8, 35, 2, 18, 36, 2, 19.5, 41, 2, 19.5, 26.5, 2, 8, 15, 2, -6, 11.5, 2, -5.5, 25, 2, -6, 16.5, 2, -6, 25, 2, 8.5, 8, 2, 17.5, 25, 2, 23, -18.5, 2, -5.5, -18.5, 2, 7, 45.5, 2, 2.5, 45.5, 2, -0.5, 57, 2, 7, 57, 2, -4.5, 45.5, 2, -4.5, 45.5, 2, 7, 33.5, 2, 21, 28.5, 2, 23, 35.5, 2, 21, 41, 2, 23)
@@ -14,7 +16,11 @@ agent_radius = 1.0
 [node name="Level" instance=ExtResource("1_mi4ay")]
 
 [node name="player" parent="." index="2"]
+fixed_camera = false
 fixed_camera_pos = Vector3(45, 0, 0)
+
+[node name="Coin2" parent="items" index="1" instance=ExtResource("2_ilhis")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 5.2036543, 0, 0)
 
 [node name="Mob" parent="mobs" index="0" node_paths=PackedStringArray("patrol_path") instance=ExtResource("2_v5uil")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 10, 0, 12)
@@ -57,3 +63,6 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 18, 0, -17)
 
 [node name="PatrolPoint3" parent="NavigationRegion3D/Patrol2" index="2" instance=ExtResource("4_v5uil")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 38.04294, 0, -16.791437)
+
+[node name="Mushroom 1_1" parent="." index="8" instance=ExtResource("5_5722l")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 14, 0, 11)

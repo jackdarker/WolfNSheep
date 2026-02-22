@@ -95,3 +95,6 @@ unique_name_in_owner = true
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -2.3841858e-07, 10)
 current = true
 fov = 50.0
+
+[node name="tmr_regen" type="Timer" parent="."]
+unique_name_in_owner = true
