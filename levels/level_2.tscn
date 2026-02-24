@@ -32,6 +32,10 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 14, 0, -15)
 patrol_path = NodePath("../../NavigationRegion3D/Patrol2")
 view_cone = Vector3(4, 1, 10)
 
+[node name="Mob3" parent="mobs" index="2" instance=ExtResource("2_v5uil")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -10, 1, -2)
+view_cone = Vector3(4, 1, 10)
+
 [node name="NavigationRegion3D" type="NavigationRegion3D" parent="." index="7"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -1.5, 0)
 navigation_mesh = SubResource("NavigationMesh_pqqg8")

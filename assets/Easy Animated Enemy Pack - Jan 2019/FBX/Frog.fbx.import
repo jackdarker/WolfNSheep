@@ -3,13 +3,13 @@
 importer="scene"
 importer_version=1
 type="PackedScene"
-uid="uid://bybyjh2wemilp"
-path="res://.godot/imported/Wasp.fbx-c32e8fbb7061d013047c27f1758ad958.scn"
+uid="uid://crk2w5jik4p0j"
+path="res://.godot/imported/Frog.fbx-d5c7dca626139808b76a0746e9196d2a.scn"
 
 [deps]
 
-source_file="res://assets/models/Wasp.fbx"
-dest_files=["res://.godot/imported/Wasp.fbx-c32e8fbb7061d013047c27f1758ad958.scn"]
+source_file="res://assets/Easy Animated Enemy Pack - Jan 2019/FBX/Frog.fbx"
+dest_files=["res://.godot/imported/Frog.fbx-d5c7dca626139808b76a0746e9196d2a.scn"]
 
 [params]
 

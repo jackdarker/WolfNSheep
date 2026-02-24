@@ -1,10 +1,6 @@
-[gd_scene load_steps=5 format=3 uid="uid://h0ct6q2xsyhy"]
+[gd_scene load_steps=4 format=3 uid="uid://h0ct6q2xsyhy"]
 
 [ext_resource type="Script" uid="uid://1vfr548k6pgq" path="res://game/mob/mob.gd" id="1_5st67"]
-
-[sub_resource type="CapsuleShape3D" id="CapsuleShape3D_sox52"]
-radius = 0.46069336
-height = 0.9213867
 
 [sub_resource type="ConvexPolygonShape3D" id="ConvexPolygonShape3D_v24qj"]
 points = PackedVector3Array(0, 0, 0, 0, 0, 0, 0, 0, 0)
@@ -13,10 +9,6 @@ points = PackedVector3Array(0, 0, 0, 0, 0, 0, 0, 0, 0)
 
 [node name="Mob" type="CharacterBody3D"]
 script = ExtResource("1_5st67")
-
-[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.46089935, 0)
-shape = SubResource("CapsuleShape3D_sox52")
 
 [node name="nav_agent" type="NavigationAgent3D" parent="."]
 unique_name_in_owner = true

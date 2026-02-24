@@ -1,9 +1,89 @@
-[gd_scene load_steps=3 format=3 uid="uid://dbhlifh7xgbp5"]
+[gd_scene load_steps=14 format=3 uid="uid://dbhlifh7xgbp5"]
 
 [ext_resource type="PackedScene" uid="uid://h0ct6q2xsyhy" path="res://game/mob/mob.tscn" id="1_sq7mo"]
 [ext_resource type="PackedScene" uid="uid://cm7f116kedlp6" path="res://game/mob/animal_wasp/skin_animal_wasp.tscn" id="2_53ety"]
+
+[sub_resource type="CapsuleShape3D" id="CapsuleShape3D_53ety"]
+radius = 1.004
+height = 3.1179285
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_53ety"]
+animation = &"Armature|Wasp_Attack"
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_0qoy4"]
+animation = &"Armature|Wasp_Death"
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_vu7lv"]
+animation = &"Armature|Wasp_Flying"
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_nxwme"]
+advance_mode = 2
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_ooryn"]
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_bgag7"]
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_0dd4c"]
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_e38ug"]
+
+[sub_resource type="AnimationNodeStateMachine" id="AnimationNodeStateMachine_2mpu0"]
+states/Attack/node = SubResource("AnimationNodeAnimation_53ety")
+states/Attack/position = Vector2(458, 176)
+states/Death/node = SubResource("AnimationNodeAnimation_0qoy4")
+states/Death/position = Vector2(592, 105)
+states/End/position = Vector2(687, 105)
+states/Idle/node = SubResource("AnimationNodeAnimation_vu7lv")
+states/Idle/position = Vector2(458, 105)
+states/Start/position = Vector2(353, 103)
+transitions = ["Start", "Idle", SubResource("AnimationNodeStateMachineTransition_nxwme"), "Idle", "Attack", SubResource("AnimationNodeStateMachineTransition_ooryn"), "Idle", "Death", SubResource("AnimationNodeStateMachineTransition_bgag7"), "Attack", "Idle", SubResource("AnimationNodeStateMachineTransition_0dd4c"), "Death", "Idle", SubResource("AnimationNodeStateMachineTransition_e38ug")]
+
+[sub_resource type="AnimationNodeBlendTree" id="AnimationNodeBlendTree_phrw5"]
+graph_offset = Vector2(-285.5351, -23.851395)
+nodes/output/position = Vector2(820, 140)
+nodes/StateMachine/node = SubResource("AnimationNodeStateMachine_2mpu0")
+nodes/StateMachine/position = Vector2(520, 120)
+node_connections = [&"output", 0, &"StateMachine"]
 
 [node name="Mob" instance=ExtResource("1_sq7mo")]
 
 [node name="Skin" parent="." index="0" instance=ExtResource("2_53ety")]
 
+[node name="Skeleton3D" parent="Skin/Armature" index="0"]
+bones/1/rotation = Quaternion(-0.046812344, -1.2068091e-07, 1.3207171e-08, 0.9989037)
+bones/2/position = Vector3(-0.00033058395, 0.021555644, -0.0012473103)
+bones/2/rotation = Quaternion(-0.36976877, 0.6027197, -0.36976853, 0.6027199)
+bones/3/rotation = Quaternion(-0.076526724, -0.7029533, -0.07652667, 0.70295376)
+bones/4/rotation = Quaternion(-0.39687258, 2.1507965e-07, -1.9184917e-07, 0.91787374)
+bones/6/rotation = Quaternion(0.7130376, -0.05065476, 0.6471571, -0.26495138)
+bones/8/rotation = Quaternion(0.6605687, -0.25424838, 0.70401514, -0.058047563)
+bones/11/rotation = Quaternion(-0.34438863, -0.015386826, -0.008722842, 0.9386605)
+bones/12/rotation = Quaternion(-0.52747035, -0.0078008445, -0.006462485, 0.849513)
+bones/13/rotation = Quaternion(0.011866142, 0.95540935, -0.29504615, 0.00012602843)
+bones/15/rotation = Quaternion(0.5257672, 0.5314662, 0.6494809, -0.13887809)
+bones/16/rotation = Quaternion(0.22158377, 0.65238476, 0.21090016, 0.6934089)
+bones/17/rotation = Quaternion(-0.3000412, 0.36613378, -0.45084175, 0.7567451)
+bones/19/rotation = Quaternion(0.6653844, 0.5640448, 0.36088064, -0.3299732)
+bones/20/rotation = Quaternion(0.46694535, 0.43782172, -0.063877754, 0.76563305)
+bones/21/rotation = Quaternion(-0.40199873, 0.5126855, -0.40012217, 0.64455646)
+bones/23/rotation = Quaternion(0.71748596, 0.6535175, 0.20869714, -0.120724194)
+bones/24/rotation = Quaternion(0.47119445, 0.42160282, -0.22397356, 0.7416622)
+bones/25/rotation = Quaternion(-0.57812107, 0.54416746, -0.34009883, 0.5039749)
+bones/28/rotation = Quaternion(-0.21248189, 0.9600758, 0.1819107, 0.0038144588)
+bones/29/rotation = Quaternion(0.5169023, -0.65577376, 0.17338264, 0.5222177)
+bones/32/rotation = Quaternion(-0.37454313, 0.81035614, 0.11701507, -0.43514135)
+bones/33/rotation = Quaternion(-0.44862083, 0.8478277, -0.27827498, -0.049906977)
+bones/35/rotation = Quaternion(0.5800524, 0.775053, -0.15553705, -0.19657144)
+bones/36/rotation = Quaternion(-0.042237505, 0.30691317, -0.29925367, 0.9024786)
+bones/37/rotation = Quaternion(-0.65549755, 0.40238494, -0.06255843, 0.6359998)
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="." index="1"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.7074857, 0)
+shape = SubResource("CapsuleShape3D_53ety")
+
+[node name="AnimationTree" type="AnimationTree" parent="." index="2"]
+root_node = NodePath("../Skin")
+tree_root = SubResource("AnimationNodeBlendTree_phrw5")
+anim_player = NodePath("../Skin/AnimationPlayer")
+
+[editable path="Skin"]

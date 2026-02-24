@@ -1,0 +1,5 @@
+[gd_scene load_steps=2 format=3 uid="uid://cfrqom4dgo8ir"]
+
+[ext_resource type="PackedScene" uid="uid://bb53sun4e65kf" path="res://assets/Easy Animated Enemy Pack - Jan 2019/FBX/Rat.fbx" id="1_vs3gm"]
+
+[node name="Rat" instance=ExtResource("1_vs3gm")]
