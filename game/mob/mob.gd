@@ -29,6 +29,9 @@ var _prev_state:STATE
 		%attack_range.target_position =Vector3(0,0,-1*value.z)
 		%attack_range.shape.points=[Vector3(value.x,0,0),Vector3(-1*value.x,0,0),Vector3(0,0,value.z)]
 		attack_cone=value
+		
+@onready var animation_tree = %AnimationTree
+@onready var state_machine : AnimationNodeStateMachinePlayback = animation_tree.get("parameters/StateMachine/playback")
 
 func _ready() -> void:
 	view_cone=view_cone
@@ -38,10 +41,21 @@ func _ready() -> void:
 	_player_pos=home_pos
 	_target_pos=home_pos
 	%state_timer.timeout.connect(on_statetimer)
+	%attack_timer.timeout.connect(on_attacktimer)
+	$Skin.Attack_Done.connect(post_attack)
+	%stinger_hurt.set_deferred("disabled",true)
 
 func on_statetimer():
 	if(_state==STATE.SEARCH):
 		_state=STATE.IDLE
+
+func on_attacktimer():
+		_state=STATE.IDLE
+
+func post_attack():
+	%stinger_hurt.set_deferred("disabled",true)
+	%attack_timer.wait_time=1
+	%attack_timer.start()
 	
 func _process(delta: float) -> void:
 	_prev_state=_state	
@@ -51,7 +65,11 @@ func _process(delta: float) -> void:
 		if collider.collider.is_in_group("Player"):
 			_player_pos=collider.collider.global_position
 			%nav_agent.target_position=_player_pos
-			#_state=STATE.ATTACK
+			_state=STATE.ATTACK
+	if(_prev_state!=_state && _state==STATE.ATTACK):
+		%stinger_hurt.set_deferred("disabled",false)
+		state_machine.travel("Attack")
+		
 	#follow if in view		
 	if(_state==STATE.IDLE || _state==STATE.FOLLOW || _state==STATE.PATROL):
 		colliders=%view_range.collision_result
@@ -126,3 +144,9 @@ func _physics_process(delta):
 	else:
 		velocity=Vector3.ZERO
 	move_and_slide()
+
+
+func _on_attack_hit(body: Node3D) -> void:
+	if(body.is_in_group("Player")):
+		pass
+	%stinger_hurt.set_deferred("disabled",true)

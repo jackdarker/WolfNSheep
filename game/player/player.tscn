@@ -47,6 +47,7 @@ rings = 8
 slide_on_slope = true
 
 [node name="Player" type="CharacterBody3D" groups=["Player"]]
+collision_layer = 3
 axis_lock_angular_x = true
 axis_lock_angular_y = true
 axis_lock_angular_z = true

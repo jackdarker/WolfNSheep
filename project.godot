@@ -74,6 +74,8 @@ left_click={
 [layer_names]
 
 3d_render/layer_15="markers"
+3d_physics/layer_1="walls"
+3d_physics/layer_2="hurtbox"
 
 [rendering]
 
