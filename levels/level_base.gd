@@ -6,6 +6,7 @@ func _ready():
 	Global.score_changed.connect(%Hud.update_score)
 	Global.player_death.connect(Callable(self , "player_revive"))
 	Global.stamina_changed.connect(%Hud.update_stamina)
+	Global.health_changed.connect(%Hud.update_health)
 
 func player_revive()->void:
 	%player.revive()

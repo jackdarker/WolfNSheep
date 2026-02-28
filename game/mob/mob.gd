@@ -141,6 +141,10 @@ func _physics_process(delta):
 		if(_next!=Vector3.ZERO && direction.length()>0):
 			var target_rotation = direction.signed_angle_to(Vector3.FORWARD,Vector3.DOWN)
 			rotation.y = lerp_angle(rotation.y, target_rotation, rotation_speed * delta)
+	elif(_state==STATE.ATTACK):
+		set_quaternion(get_quaternion() * animation_tree.get_root_motion_rotation())
+		set_velocity(get_quaternion() * animation_tree.get_root_motion_position() / delta)
+
 	else:
 		velocity=Vector3.ZERO
 	move_and_slide()
@@ -148,5 +152,5 @@ func _physics_process(delta):
 
 func _on_attack_hit(body: Node3D) -> void:
 	if(body.is_in_group("Player")):
-		pass
-	%stinger_hurt.set_deferred("disabled",true)
+		(body as Player).modify_health(-10)
+		%stinger_hurt.set_deferred("disabled",true)

@@ -1,0 +1,8 @@
+[gd_scene load_steps=2 format=3 uid="uid://c3hg8tsugiajv"]
+
+[ext_resource type="PackedScene" uid="uid://cce8drvxmyrv3" path="res://assets/models/Models/GLB format/door-rotate.glb" id="1_dr6s8"]
+
+[node name="Exit" type="Node3D"]
+
+[node name="door-rotate2" parent="." instance=ExtResource("1_dr6s8")]
+transform = Transform3D(3, 0, 0, 0, 3, 0, 0, 0, 3, 0, 0.025, 0)

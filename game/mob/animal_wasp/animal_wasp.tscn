@@ -8,7 +8,7 @@ radius = 1.004
 height = 3.1179285
 
 [sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_53ety"]
-animation = &"Armature|Wasp_Attack"
+animation = &"wasp_extraanims/Armature|Wasp_Attack_2"
 
 [sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_0qoy4"]
 animation = &"Armature|Wasp_Death"
@@ -41,7 +41,7 @@ states/Start/position = Vector2(353, 103)
 transitions = ["Start", "Idle", SubResource("AnimationNodeStateMachineTransition_nxwme"), "Idle", "Attack", SubResource("AnimationNodeStateMachineTransition_ooryn"), "Idle", "Death", SubResource("AnimationNodeStateMachineTransition_bgag7"), "Death", "Idle", SubResource("AnimationNodeStateMachineTransition_e38ug"), "Attack", "Idle", SubResource("AnimationNodeStateMachineTransition_0dd4c")]
 
 [sub_resource type="AnimationNodeBlendTree" id="AnimationNodeBlendTree_phrw5"]
-graph_offset = Vector2(25.900818, 83.03305)
+graph_offset = Vector2(-182.26733, -43.42717)
 nodes/output/position = Vector2(820, 140)
 nodes/StateMachine/node = SubResource("AnimationNodeStateMachine_2mpu0")
 nodes/StateMachine/position = Vector2(520, 120)
@@ -55,23 +55,23 @@ attack_cone = Vector3(1, 1, 3)
 [node name="Skin" parent="." index="0" instance=ExtResource("2_53ety")]
 
 [node name="Skeleton3D" parent="Skin/Armature" index="0"]
-bones/1/position = Vector3(-1.7430514e-08, 0.6666883, -0.20341434)
-bones/6/rotation = Quaternion(0.4518981, 0.69519573, 0.521741, 0.20069218)
-bones/8/rotation = Quaternion(0.5436235, 0.19905236, 0.42348742, 0.69678557)
-bones/11/rotation = Quaternion(-0.42701706, -0.024076005, -0.0136488015, 0.9038199)
-bones/12/rotation = Quaternion(-0.5697501, -0.0122051705, -0.010111107, 0.8216653)
-bones/13/rotation = Quaternion(0.01852402, 0.93608844, -0.351277, 8.538485e-05)
-bones/17/rotation = Quaternion(-0.39575532, 0.40571952, -0.44055104, 0.69619274)
-bones/19/rotation = Quaternion(0.67035156, 0.5640538, 0.3433619, -0.33848926)
-bones/21/rotation = Quaternion(-0.5062073, 0.5435283, -0.36466855, 0.5615585)
-bones/23/rotation = Quaternion(0.7238605, 0.64690185, 0.19801399, -0.13540497)
-bones/25/rotation = Quaternion(-0.65004885, 0.5562881, -0.33203837, 0.39715305)
-bones/28/rotation = Quaternion(-0.2002614, 0.9614752, 0.18824957, 0.0048007723)
-bones/29/rotation = Quaternion(0.53880364, -0.65299004, 0.24315263, 0.47346756)
-bones/32/rotation = Quaternion(-0.36616603, 0.81417567, 0.12149643, -0.4339114)
-bones/33/rotation = Quaternion(-0.48635668, 0.7905711, -0.37030125, -0.036490716)
-bones/36/rotation = Quaternion(-0.06106263, 0.29942164, -0.27609068, 0.9112585)
-bones/37/rotation = Quaternion(-0.72432137, 0.32234883, -0.0824918, 0.6038584)
+bones/1/position = Vector3(-1.7430514e-08, 0.51860076, -0.20341434)
+bones/6/rotation = Quaternion(0.71080077, 0.112808764, 0.6701842, -0.18135515)
+bones/8/rotation = Quaternion(0.68724483, -0.1728208, 0.6974362, 0.106818914)
+bones/11/rotation = Quaternion(-0.36085668, -0.017105201, -0.009697, 0.93241405)
+bones/12/rotation = Quaternion(-0.5358885, -0.0086680995, -0.0071809357, 0.8442138)
+bones/13/rotation = Quaternion(0.013319813, 0.951878, -0.30618724, 0.00055504765)
+bones/17/rotation = Quaternion(-0.3192115, 0.3743414, -0.44933653, 0.7457005)
+bones/19/rotation = Quaternion(0.6666209, 0.5639488, 0.35738412, -0.33144385)
+bones/21/rotation = Quaternion(-0.42310584, 0.519593, -0.3938143, 0.6292178)
+bones/23/rotation = Quaternion(0.7187996, 0.6520557, 0.20690635, -0.1238567)
+bones/25/rotation = Quaternion(-0.5929336, 0.5473976, -0.339044, 0.48356467)
+bones/28/rotation = Quaternion(-0.20997627, 0.96037686, 0.18322182, 0.00400131)
+bones/29/rotation = Quaternion(0.52141666, -0.6555893, 0.1873568, 0.51305443)
+bones/32/rotation = Quaternion(-0.37277928, 0.81116897, 0.117961444, -0.43488574)
+bones/33/rotation = Quaternion(-0.45651835, 0.8374589, -0.29667142, -0.047326192)
+bones/36/rotation = Quaternion(-0.045950912, 0.3054677, -0.29472288, 0.9042767)
+bones/37/rotation = Quaternion(-0.66968834, 0.38704377, -0.06653969, 0.6303072)
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="." index="1"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.7074857, 0)
@@ -80,6 +80,8 @@ shape = SubResource("CapsuleShape3D_53ety")
 [node name="AnimationTree" type="AnimationTree" parent="." index="2"]
 unique_name_in_owner = true
 root_node = NodePath("%AnimationTree/../Skin")
+root_motion_track = NodePath("Armature/Skeleton3D:Root")
+root_motion_local = true
 tree_root = SubResource("AnimationNodeBlendTree_phrw5")
 anim_player = NodePath("../Skin/AnimationPlayer")
 
@@ -90,19 +92,19 @@ debug_shape_custom_color = Color(0.95728225, 0.2543378, 0.6086742, 1)
 unique_name_in_owner = true
 
 [node name="stinger_bone_attach" type="BoneAttachment3D" parent="." index="8"]
-transform = Transform3D(0.9938155, -0.07703147, 0.0799783, -0.05147394, 0.3186072, 0.94648725, -0.09839095, -0.9447502, 0.3126709, -0.17954165, 1.2940241, -1.0410438)
+transform = Transform3D(0.9966456, -0.06601037, 0.04837132, -0.04836355, 0.0017154486, 0.99882746, -0.06601593, -0.99781585, -0.0014838513, -0.1480062, 0.8340667, -0.8824107)
 bone_name = "Sting_end"
 bone_idx = 14
 use_external_skeleton = true
 external_skeleton = NodePath("../Skin/Armature/Skeleton3D")
 
 [node name="Area3D" type="Area3D" parent="stinger_bone_attach" index="0"]
-transform = Transform3D(1.0000005, 0, 0, 0, 0.99999934, 0, 0, 0, 0.9999998, 0.24915828, 0.6593782, -0.2964111)
+transform = Transform3D(1.0000005, -7.450581e-09, 1.0244548e-08, 0, 0.9999991, 1.4901161e-08, -1.3969839e-08, 7.450581e-09, 1, 0.20244583, 0.28459, 0.030190349)
 collision_mask = 2
 
 [node name="stinger_hurt" type="CollisionShape3D" parent="stinger_bone_attach/Area3D" index="0"]
 unique_name_in_owner = true
-transform = Transform3D(1.0000056, 0, 0, 0, 1.0000036, 0, 0, 0, 1.000005, 0, 0, 0)
+transform = Transform3D(0.99773985, -0.055383373, 0.03820208, 0.0671308, 0.7815306, -0.6202513, 0.004495506, 0.6214087, 0.78347915, 0, 0, 0)
 shape = SubResource("SphereShape3D_53ety")
 debug_color = Color(0.63529414, 0.5137255, 0.32941177, 0.8235294)
 

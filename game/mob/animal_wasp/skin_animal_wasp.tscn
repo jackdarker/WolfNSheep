@@ -1,7 +1,29 @@
-[gd_scene load_steps=3 format=3 uid="uid://cm7f116kedlp6"]
+[gd_scene load_steps=9 format=3 uid="uid://cm7f116kedlp6"]
 
 [ext_resource type="PackedScene" uid="uid://cyvlgvyo3w4gu" path="res://assets/Easy Animated Enemy Pack - Jan 2019/FBX/Wasp.fbx" id="1_sq7mo"]
 [ext_resource type="Script" uid="uid://ctvkfkos2ic4j" path="res://game/mob/mob_skin.gd" id="2_hkckn"]
+[ext_resource type="Animation" uid="uid://bbgd7b1t1tlhf" path="res://assets/Easy Animated Enemy Pack - Jan 2019/FBX/wasp_anims/Armature_Wasp_Attack.res" id="3_alpxn"]
+[ext_resource type="Animation" uid="uid://crsle4bpilg33" path="res://assets/Easy Animated Enemy Pack - Jan 2019/FBX/wasp_anims/Armature_Wasp_Death.res" id="4_omq5l"]
+[ext_resource type="Animation" uid="uid://cuajo2yjve2kx" path="res://assets/Easy Animated Enemy Pack - Jan 2019/FBX/wasp_anims/Armature_Wasp_Flying.res" id="5_t1os8"]
+[ext_resource type="AnimationLibrary" uid="uid://dibpvnayn6nb1" path="res://assets/Easy Animated Enemy Pack - Jan 2019/FBX/wasp_anims/wasp_extraanims.res" id="6_6jyek"]
+
+[sub_resource type="Animation" id="Animation_i40tw"]
+length = 0.001
+tracks/0/type = "position_3d"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Armature/Skeleton3D:Root")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = PackedFloat32Array(0, 1, 0, 0, 0)
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_hllp5"]
+_data = {
+&"Armature|Wasp_Attack": ExtResource("3_alpxn"),
+&"Armature|Wasp_Death": ExtResource("4_omq5l"),
+&"Armature|Wasp_Flying": ExtResource("5_t1os8"),
+&"RESET": SubResource("Animation_i40tw")
+}
 
 [node name="Skin" instance=ExtResource("1_sq7mo")]
 transform = Transform3D(1.3113416e-07, 0, 1, 0, 1, 0, -1, 0, 1.3113416e-07, 0, 0, 0)
@@ -93,3 +115,9 @@ bones/36/scale = Vector3(0.9999999, 1, 1)
 bones/37/position = Vector3(-3.952874e-07, 0.19655426, -1.693775e-07)
 bones/37/rotation = Quaternion(-0.65549755, 0.40238494, -0.06255843, 0.6359998)
 bones/37/scale = Vector3(1.0000001, 1.0000002, 1)
+
+[node name="AnimationPlayer" parent="." index="1"]
+libraries = {
+&"": SubResource("AnimationLibrary_hllp5"),
+&"wasp_extraanims": ExtResource("6_6jyek")
+}

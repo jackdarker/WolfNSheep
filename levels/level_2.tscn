@@ -33,7 +33,7 @@ patrol_path = NodePath("../../NavigationRegion3D/Patrol2")
 view_cone = Vector3(4, 1, 10)
 
 [node name="Mob3" parent="mobs" index="2" instance=ExtResource("2_v5uil")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -10, 1, -2)
+transform = Transform3D(0.49999997, 0, -0.86602545, 0, 1, 0, 0.86602545, 0, 0.49999997, -10, 1, 4)
 view_cone = Vector3(4, 1, 10)
 
 [node name="NavigationRegion3D" type="NavigationRegion3D" parent="." index="7"]

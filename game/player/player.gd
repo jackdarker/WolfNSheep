@@ -1,4 +1,4 @@
-extends CharacterBody3D
+class_name Player extends CharacterBody3D
 
 @export_group("Movement")
 ## Character maximum run speed on the ground in meters per second.
@@ -49,6 +49,7 @@ const dash_cost:float=20
 @onready var _dust_particles: GPUParticles3D = %DustParticles
 
 var dashing:float=0
+var speech_bubble = preload("res://ui/SpeechBubble.tscn")
 
 func _ready() -> void:
 	Global.kill_plane_touched.connect(func on_kill_plane_touched() -> void:
@@ -80,7 +81,20 @@ func _unhandled_input(event: InputEvent) -> void:
 		_camera_input_direction.x = -event.relative.x * mouse_sensitivity
 		_camera_input_direction.y = -event.relative.y * mouse_sensitivity
 
-func modify_stamina(change):
+
+func modify_health(change:float):
+	var new_health = clampf(health+change,0,100)
+	if new_health<health:
+		var bubble = speech_bubble.instantiate()
+		bubble.position.y=2
+		self.add_child(bubble)
+	if(new_health!=health):
+		health=new_health
+		Global.health_changed.emit(health)
+	
+
+
+func modify_stamina(change:float):
 	var new_stamina = clampf(stamina+change,0,100)
 	if(new_stamina!=stamina):
 		stamina=new_stamina

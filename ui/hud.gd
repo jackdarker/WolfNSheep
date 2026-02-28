@@ -5,3 +5,6 @@ func update_score():
 
 func update_stamina(value):
 	%bar_stamina.value=value
+
+func update_health(value):
+	%bar_health.value=value
