@@ -50,6 +50,7 @@ const dash_cost:float=20
 
 var dashing:float=0
 var speech_bubble = preload("res://ui/SpeechBubble.tscn")
+var interact_bubble
 
 func _ready() -> void:
 	Global.kill_plane_touched.connect(func on_kill_plane_touched() -> void:
@@ -110,7 +111,9 @@ func regen_stamina():
 	%tmr_regen.wait_time=0.5
 
 func _process(delta: float) -> void:
-	pass
+	if _interact && Input.is_action_just_released("left_click",true):
+		_interact.call()
+		_hide_interaction(null)
 		
 func _physics_process(delta: float) -> void:
 	if(fixed_camera):
@@ -185,3 +188,28 @@ func _physics_process(delta: float) -> void:
 
 	_was_on_floor_last_frame = is_on_floor()
 	move_and_slide()
+
+func _on_interact_area_entered(area: Area3D) -> void:
+	var node=area.get_parent()
+	if node.has_method("interact") && node.can_interact():
+		_show_interaction(node)
+
+
+func _on_interact_area_exited(area: Area3D) -> void:
+	var node=area.get_parent()
+	if node.has_method("interact"):
+		_hide_interaction(node)
+
+var _interact:Callable
+func _show_interaction(node):
+	_interact=node.interact
+	interact_bubble = speech_bubble.instantiate()
+	interact_bubble.text=node.Action
+	interact_bubble.position.y=2
+	interact_bubble.lifetime=-1
+	self.add_child(interact_bubble)
+
+func _hide_interaction(node):
+	_interact= func(): pass
+	if(interact_bubble):
+		interact_bubble.queue_free()

@@ -8,4 +8,5 @@ extends Node3D
 
 #the player will call queue_free !
 func _on_tree_entered() -> void:
-	%AnimationPlayer.play("floating",-1, 1/lifetime)
+	if(lifetime>0):
+		%AnimationPlayer.play("floating",-1, 1/lifetime)

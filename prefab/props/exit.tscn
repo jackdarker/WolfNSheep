@@ -1,8 +1,22 @@
-[gd_scene load_steps=2 format=3 uid="uid://c3hg8tsugiajv"]
+[gd_scene load_steps=4 format=3 uid="uid://c3hg8tsugiajv"]
 
 [ext_resource type="PackedScene" uid="uid://cce8drvxmyrv3" path="res://assets/models/Models/GLB format/door-rotate.glb" id="1_dr6s8"]
+[ext_resource type="Script" uid="uid://b3t1jy5s3q71y" path="res://prefab/props/interactable.gd" id="1_fdyww"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_3kymu"]
+size = Vector3(2, 2.034668, 1.6089478)
 
 [node name="Exit" type="Node3D"]
+script = ExtResource("1_fdyww")
 
 [node name="door-rotate2" parent="." instance=ExtResource("1_dr6s8")]
 transform = Transform3D(3, 0, 0, 0, 3, 0, 0, 0, 3, 0, 0.025, 0)
+
+[node name="Area3D" type="Area3D" parent="."]
+collision_layer = 4
+collision_mask = 0
+monitoring = false
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Area3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0.864)
+shape = SubResource("BoxShape3D_3kymu")

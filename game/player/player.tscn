@@ -1,4 +1,4 @@
-[gd_scene load_steps=12 format=3 uid="uid://b1ot6gn6tms6h"]
+[gd_scene load_steps=13 format=3 uid="uid://b1ot6gn6tms6h"]
 
 [ext_resource type="Script" uid="uid://boh56hgn1rut7" path="res://game/player/player.gd" id="1_dpokc"]
 [ext_resource type="PackedScene" uid="uid://prh35jb6tjtd" path="res://game/player/sophia_skin/sophia_skin.tscn" id="2_4dj54"]
@@ -46,8 +46,12 @@ rings = 8
 [sub_resource type="SeparationRayShape3D" id="SeparationRayShape3D_3w01g"]
 slide_on_slope = true
 
+[sub_resource type="BoxShape3D" id="BoxShape3D_a4w0n"]
+size = Vector3(1, 1.487793, 1)
+
 [node name="Player" type="CharacterBody3D" groups=["Player"]]
 collision_layer = 3
+collision_mask = 5
 axis_lock_angular_x = true
 axis_lock_angular_y = true
 axis_lock_angular_z = true
@@ -99,3 +103,14 @@ fov = 50.0
 
 [node name="tmr_regen" type="Timer" parent="."]
 unique_name_in_owner = true
+
+[node name="interact" type="Area3D" parent="."]
+collision_layer = 4
+collision_mask = 4
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="interact"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.7561035, 0)
+shape = SubResource("BoxShape3D_a4w0n")
+
+[connection signal="area_entered" from="interact" to="." method="_on_interact_area_entered"]
+[connection signal="area_exited" from="interact" to="." method="_on_interact_area_exited"]
