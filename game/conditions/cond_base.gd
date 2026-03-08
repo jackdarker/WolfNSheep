@@ -9,6 +9,9 @@ class Result:
 		res.OK = self.OK && other.OK
 		res.Msg = self.msg + other.Msg
 		return res
-	
-func is_valid()->Result:
+
+## checks if the condition is true
+# call with resolve=true to execute the cond.
+# f.e. if the condition requires that you handover 20 coin, the resolve should transfer those coin from you to the target
+func is_valid(resolve:bool=false)->Result:
 	return Result.new()

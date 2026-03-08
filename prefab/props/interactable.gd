@@ -3,14 +3,11 @@ class_name Interactable extends Node3D
 @export var ID:String="MyName"
 @export var Action:String="DoSomething"
 
-@export var Condition:CondHasItems =CondHasItems.new()
+@export var Condition:=CondBase.new()
 
 # overide this
-func interact():
-	pass
+func interact()->CondBase.Result:
+	return Condition.is_valid(true)
 
-func can_interact()->bool:
-	return true
-
-func why_cant_interact()->String:
-	return ""
+func can_interact()->CondBase.Result:
+	return Condition.is_valid(false)

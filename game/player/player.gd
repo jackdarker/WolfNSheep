@@ -112,8 +112,10 @@ func regen_stamina():
 
 func _process(delta: float) -> void:
 	if _interact && Input.is_action_just_released("left_click",true):
-		_interact.call()
+		var _res=_interact.call()
 		_hide_interaction(null)
+		if(_res && !_res.OK):
+			callout(_res.Msg,3)
 		
 func _physics_process(delta: float) -> void:
 	if(fixed_camera):
@@ -200,16 +202,20 @@ func _on_interact_area_exited(area: Area3D) -> void:
 	if node.has_method("interact"):
 		_hide_interaction(node)
 
-var _interact:Callable
-func _show_interaction(node):
-	_interact=node.interact
-	interact_bubble = speech_bubble.instantiate()
-	interact_bubble.text=node.Action
-	interact_bubble.position.y=2
-	interact_bubble.lifetime=-1
-	self.add_child(interact_bubble)
 
-func _hide_interaction(node):
+var _interact:Callable
+func _show_interaction(interactable):
+	_interact=interactable.interact
+	callout(interactable.Action,-1)
+
+func _hide_interaction(interactable):
 	_interact= func(): pass
 	if(interact_bubble):
 		interact_bubble.queue_free()
+
+func callout(text:String, lifetime:float):
+	interact_bubble = speech_bubble.instantiate()
+	interact_bubble.text=text
+	interact_bubble.position.y=2
+	interact_bubble.lifetime=lifetime
+	self.add_child(interact_bubble)

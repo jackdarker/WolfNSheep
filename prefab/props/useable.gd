@@ -1,15 +1,14 @@
 extends Interactable
 
-var disabled:=false
-
-func interact():
-	$AnimationPlayer.play("use")
-
+# call by Animation player
 func cb_post_use():
 	pass
+	
+func interact()->CondBase.Result:
+	var res=Condition.is_valid(true)
+	if(res.OK):
+		$AnimationPlayer.play("toggle")
+	return res
 
-func can_interact()->bool:
-	return !disabled
-
-func why_cant_interact()->String:
-	return ""
+func can_interact()->CondBase.Result:
+	return Condition.is_valid(false)

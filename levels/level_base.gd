@@ -2,6 +2,7 @@ extends Node3D
 
 func _ready():
 	Global.coins=20
+	Global.player=%player
 	Global.score_changed.connect(Callable(self , "checkVictory"))
 	Global.score_changed.connect(%Hud.update_score)
 	Global.player_death.connect(Callable(self , "player_revive"))
