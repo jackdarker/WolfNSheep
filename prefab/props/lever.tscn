@@ -2,10 +2,8 @@
 
 [ext_resource type="PackedScene" uid="uid://dj0uav7nf2ua5" path="res://assets/models/Models/GLB format/lever-single.glb" id="1_88buy"]
 [ext_resource type="Script" uid="uid://0kumd5r6lkh" path="res://prefab/props/useable.gd" id="2_pce35"]
+[ext_resource type="Material" uid="uid://cbgvck7ekffye" path="res://levels/material_wall.tres" id="3_jmuxk"]
 [ext_resource type="Script" uid="uid://bnlpsr656dvgy" path="res://game/conditions/cond_checkFlagAndSet.gd" id="3_rbkfj"]
-
-[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_pce35"]
-albedo_color = Color(0.07058824, 0.43137255, 0.1882353, 1)
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_88buy"]
 size = Vector3(1.5185547, 1.3723145, 1.2635498)
@@ -18,7 +16,7 @@ Condition = NodePath("interact")
 
 [node name="lever-single" parent="." index="0"]
 transform = Transform3D(3, 0, 0, 0, 3, 0, 0, 0, 3, 0, 0, 0)
-surface_material_override/0 = SubResource("StandardMaterial3D_pce35")
+surface_material_override/0 = ExtResource("3_jmuxk")
 
 [node name="handle" parent="lever-single" index="0"]
 transform = Transform3D(0.64278764, 0.76604444, 0, -0.76604444, 0.64278764, 0, 0, 0, 1, 1.0828671e-15, 0.1, 0)
